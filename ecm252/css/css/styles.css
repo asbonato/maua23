@@ -1,0 +1,46 @@
+#titulo {
+    color: green;
+    text-align: center;
+}
+
+/* somente para elementos do tipo p que tenham id igual a 
+desccricao */
+
+p#descricao {
+    color: blue;
+}
+
+p.promocao {
+    text-align: center;
+    background-color: lightgreen;
+}
+
+.nova {
+    color: white;   
+}
+/* todo p que tenha a classe final-pagina e cujo di
+seja rodapé */
+p.final-pagina#rodape {
+    background-color: lightgray;
+    text-align: center;
+}
+
+/* todo curso tem essa cor de fundo */
+/* separamos os seletores usando vírgula. Ela faz o papel
+do ou lógico */
+.curso, .novo-curso {
+    background-color: aliceblue;
+}
+
+/* veja a cor de fundo repetida para que possamos
+especificar a regra não aplicável aos demais cursos */
+/* agora não repetimos mais a cor de fundo */
+.novo-curso {
+    color: red;
+}
+
+.curso, .novo-curso, #contato {
+    padding: 12px;
+    border: 1px solid lightgray;
+}
+

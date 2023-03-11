@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <title>Cascata e especificidade</title>
+    <link rel="stylesheet" href="css/cascata_especificidade.css">
+    <style>
+        /* especificidade: 0-1-1*/
+        /* 11 pontos */
+        .principal, article {
+            background-color: lightblue;
+        }
+        /* especificidade: 0-0-2*/
+        /* 2 pontos */
+        main article {
+            background-color: beige;
+        }
+    </style>
+</head>
+<body>
+    <main class="principal">
+        <article>
+            <p id="titulo" class="descricao">
+                Algoritmo de especificidade do CSS.
+            </p>
+        </article>
+    </main>
+</body>
+</html>

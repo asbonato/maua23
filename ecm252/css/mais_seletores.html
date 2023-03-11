@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="pt-Br">
+<head>
+    <meta charset="UTF-8">
+    <title>Mais seletores</title>
+    <style>
+        /* esse é um seletor descendente, representado pelo espaço
+        em branco; pegamos todos os p's que sejam filhos diretor ou
+        indiretos de um article. */
+        article p{
+            padding: 12px;
+            background-color: lightgrey;
+        }
+        /* todo p que tenha a classe promoção e que seja descendente
+        de um elemento cujo id seja principal */
+        #principal p.promocao {
+            padding: 12px;
+            background-color: aliceblue;
+        }
+
+        /* todo p que tenha a classe coordenadores, que seja
+        descendente de um section, que seja descendente de um 
+        article, que seje descendente de um elemento id igual a
+        principal, que seja descendente de body*/
+        body #principal article section p.coordenadores {
+            text-align: center;
+        }
+
+        /* todos os p's que sejam filhos diretos de article. O p
+        que é filho de section não é selecionado, portanto.*/
+        article > p {
+            border: 1px solid black;
+        }
+
+        /* todo p que tenha classe coordenadores, que seja filho
+        direto de um section, que seja descendente de um article,
+        que seja filho direto de um main */
+        main > article section > p.coordenadores {
+            font-weight: bold;
+        }
+
+    </style>
+</head>
+<body>
+    <main id="principal">
+    <h1 id="titulo">Portal de Cursos</h1>
+
+        <p id="descricao">Temos cursos nas mais diversas áreas.</p>
+
+        <p class="nova promocao">Venha conversar conosco e conhecer nossas ofertas
+            de <strong>bolsas de estudos</strong>.
+        </p>
+
+        <p>Cursos:</p>
+        <article>
+            <p class="novo-curso">Ciência da Computação</p>
+            <p class="curso">Engenharia de Computação</p>
+            <p class="curso">Farmácia</p>
+            <section>
+                <p class="coordenadores">
+                    Saiba que nossos coordenadores estão à sua disposição!
+                </p>
+            </section>
+        </article>
+
+        <p id="contato", class="final-pagina">Entre em contato: 11223344</p>
+        <p id="rodape" class="final-pagina">&copy; Todos os direitos
+            reservados
+        </p>
+    </main>
+</body>
+</html>
