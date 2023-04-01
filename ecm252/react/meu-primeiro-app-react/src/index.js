@@ -2,6 +2,13 @@ import React from "react";
 import ReactDOM from "react-dom";
 
 const App = () => {
+  const estilosBotao = {marginTop: 12, paddingTop: 8, paddingBottom: 8,
+  backgroundColor: 'blueviolet', color: 'white', border: 'none',
+  width: '100%', borderRadius: 8 };
+  const textoDoRotulo = 'Nome:';
+  const obterTextoDoBotao = () => {
+    return 'Enviar';
+  }
   return (
     <div
       style={{
@@ -17,7 +24,7 @@ const App = () => {
         htmlFor="nome"
         style={{ display: "block", marginBottom: 4 }}
       >
-        Nome:
+        {textoDoRotulo}
       </label>
       <input
         type="text"
@@ -33,18 +40,9 @@ const App = () => {
         }}
       />
       <button
-        style={{
-          marginTop: 12,
-          paddingTop: 8,
-          paddingBottom: 8,
-          backgroundColor: "blueviolet",
-          color: "white",
-          border: "none",
-          width: "100%",
-          borderRadius: 8,
-        }}
+        style={estilosBotao}
       >
-        Enviar
+        {obterTextoDoBotao()}
       </button>
     </div>
   );
