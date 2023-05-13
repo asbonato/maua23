@@ -27,9 +27,10 @@ app.get('/lembretes/:id/observacoes', (req, res) => {
     res.send(observacoesPorLembreteId[req.params.id] || [])
 })
 
-// app.get('/lembretes/observacoes', (req, res) => {
-//     res.send(observacoesPorLembreteId)
-// })
+app.post('/eventos', (req, res) => {
+    console.log(req.body)
+    res.status(200).send({msg: 'ok'})
+  })
 
 app.listen(5000, (() => {
     console.log('Observações. Porta 5000.')
