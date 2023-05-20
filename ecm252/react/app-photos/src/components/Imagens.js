@@ -1,9 +1,9 @@
 import React from "react"
 
-const Imagem = ({pic}) => {
+const Imagem = ({pic, imgStyle}) => {
     return (
-        <div>
-            <img src={pic} />
+        <div className={`${imgStyle} flex justify-content-center`}>
+            <img className="border-round" src={pic} />
         </div>
     )
 }

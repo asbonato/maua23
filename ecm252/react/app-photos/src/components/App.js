@@ -1,25 +1,36 @@
 import React, {Component} from 'react'
 import Busca from './Busca'
-import env from 'react-dotenv'
-import { createClient } from 'pexels'
+//import env from 'react-dotenv'
+//import { createClient } from 'pexels'
 import ListaImagens from './ListaImagens'
 import PexelsLogo from './PexelsLogo'
+import pexelsClient from '../utils/pexelsClient'
 
 class App extends Component {
 
     state = {pics: []}
-    pexelsClient = null
+    // pexelsClient = null
 
-    componentDidMount(){
-        this.pexelsClient = createClient(env.PEXELS_KEY)
-    }
+    // componentDidMount(){
+    //     this.pexelsClient = createClient(env.PEXELS_KEY)
+    // }
 
+    // onBuscaRealizada = (termo) => {
+    //     this.pexelsClient.photos.search({
+    //         query: termo
+    //     })
+    //     .then(pics => this.setState({pics:pics.photos}))
+    // }
     onBuscaRealizada = (termo) => {
-        this.pexelsClient.photos.search({
-            query: termo
+        pexelsClient.get('/search', {
+            params: {query: termo}
         })
-        .then(pics => this.setState({pics:pics.photos}))
+        .then(result => {
+            console.log(result)
+            this.setState({pics: result.data.photos})
+        })
     }
+
     render() {
         
         return (
@@ -30,11 +41,14 @@ class App extends Component {
                 <div className='col-12'>
                     <h1>Exibir uma lista de ...</h1>
                 </div>
-                <div className='col-8'>
+                <div className='col-12'>
                     <Busca onBuscaRealizada={this.onBuscaRealizada}/>
                 </div>
-                <div className='col-8'>
-                    <ListaImagens pics={this.state.pics}/>
+                <div className='col-12'>
+                    <div className='grid'>
+                        <ListaImagens imgStyle={'col-12 md:col-6 lg:col-4 xl:col-3'}  
+                            pics={this.state.pics}/>
+                    </div>
                 </div>
             </div>
         )
