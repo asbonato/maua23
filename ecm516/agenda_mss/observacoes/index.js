@@ -1,5 +1,6 @@
 const express = require('express')
 const { v4: uuidv4 } = require('uuid')
+const axios = require('axios')
 
 const app = express()
 app.use(express.json())
@@ -9,7 +10,7 @@ const observacoesPorLembreteId = {}
 //:id é um placeholder
 //exemplo: /lembretes/123/observacoes
 
-app.post('/lembretes/:id/observacoes', (req, res) => {
+app.post('/lembretes/:id/observacoes', async (req, res) => {
     const idObs = uuidv4()
     const { texto } = req.body
     //req.params dá acesso à lista de parâmetros da URL
@@ -20,6 +21,15 @@ app.post('/lembretes/:id/observacoes', (req, res) => {
         texto
     })
     observacoesPorLembreteId[req.params.id] = observacoesDoLembrete
+    //postando evento no barramento de eventos
+    await axios.post('http://localhost:10000/eventos', {
+        tipo: "ObservacaoCriada",
+        dados: {
+            id: idObs,
+            texto,
+            lembreteId: req.params.id
+        }
+    })
     res.status(201).send(observacoesDoLembrete)
 })
 
