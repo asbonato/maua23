@@ -16,7 +16,7 @@ app.post("/lembretes", async (req, res) => {
     contador,
     texto,
   };
-  await axios.post("http://localhost:10000/eventos", {
+  await axios.post("http://10.2.128.41:10000/eventos", {
     tipo: "LembreteCriado",
     dados: {
       contador,
