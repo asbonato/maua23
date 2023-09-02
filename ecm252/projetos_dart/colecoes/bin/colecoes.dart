@@ -1,22 +1,22 @@
 void main(List<String> arguments) {
-  List<String> nomes = ['Ana', 'Pedro'];
-  var qualquerCoisa = ['Ana', 1, 1.5, false];
-  print(nomes.runtimeType);
-  print(qualquerCoisa.runtimeType);
-  List<int> idades = [17, 22];
-  print(idades.runtimeType);
-  List<bool> deMaior = [false, true];
-  print(deMaior.runtimeType);
+  var pessoa = <String, dynamic>{'nome': 'Pedro', 'idade': 22};
 
-  var listas = [nomes, qualquerCoisa, idades, deMaior];
-  print(listas.runtimeType);
-  print(listas);
-  for(final lista in listas.reversed){
-    for(final elemento in lista){
-      print(elemento);
-    }
+  // var chaves = pessoa.keys;
+  // print(chaves.runtimeType);
+
+  // for (final propriedade in chaves) {
+  //   print(propriedade);
+  //   print(pessoa[propriedade]);
+  // }
+  // var valores = pessoa.values;
+  // for (final valor in valores) {
+  //   print(valor);
+  // }
+  var entries = pessoa.entries;
+  print(entries.runtimeType);
+  for(final entry in pessoa.entries){
+    print(entry);
+    print(entry.key);
+    print(entry.value);
   }
-  var soStrings = <String>['Ana', 'Pedro'];
-  print(soStrings.runtimeType);
-  print(qualquerCoisa.runtimeType);
 }
