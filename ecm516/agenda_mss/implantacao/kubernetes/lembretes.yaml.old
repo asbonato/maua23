@@ -1,0 +1,12 @@
+apiVersion: v1
+kind: Pod
+metadata:
+    name: lembretes
+spec:
+    containers:
+        - name: lembretes
+          image: asbonato/lembretes:0.0.1
+          resources: 
+              limits:
+                memory: 256Mi
+                cpu: 1

@@ -11,17 +11,17 @@ app.post("/eventos", (req, res) => {
   const evento = req.body;
   eventos.push(evento);
   //envia o evento para o microsserviço de lembretes
-  axios.post("http://10.2.128.41:4000/eventos", evento)
+  axios.post("http://lembretes-clusterip-service:4000/eventos", evento)
   .catch(err => console.log("Microsserviço de lembretes fora do ar."));;
-  //envia o evento para o microsserviço de observações
-  axios.post("http://10.2.128.41:5000/eventos", evento)
-  .catch(err => console.log("Microsserviço de observações fora do ar."));;
-  //envia o evento para o microsserviço de consultas
-  axios.post("http://10.2.128.41:6000/eventos", evento)
-  .catch(err => console.log("Microsserviço de consulta fora do ar."));
-  //envia o evento para o microsserviço de classificação
-  axios.post("http://10.2.128.41:7000/eventos", evento)
-  .catch(err => console.log("Microsserviço de classificação fora do ar."));;
+  // //envia o evento para o microsserviço de observações
+  // axios.post("http://10.2.128.41:5000/eventos", evento)
+  // .catch(err => console.log("Microsserviço de observações fora do ar."));;
+  // //envia o evento para o microsserviço de consultas
+  // axios.post("http://10.2.128.41:6000/eventos", evento)
+  // .catch(err => console.log("Microsserviço de consulta fora do ar."));
+  // //envia o evento para o microsserviço de classificação
+  // axios.post("http://10.2.128.41:7000/eventos", evento)
+  // .catch(err => console.log("Microsserviço de classificação fora do ar."));;
 
   res.status(200).send({ msg: "ok" });
 });

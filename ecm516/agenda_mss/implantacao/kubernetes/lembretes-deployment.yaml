@@ -1,0 +1,46 @@
+#deploymens vem de aps/v1
+apiVersion: apps/v1
+#tipo
+kind: Deployment
+metadata:
+    #nome do deployment
+    name: lembretes-deployment
+spec:
+    #quantas cópias
+    replicas: 1
+    #para especificar o rótulo
+    selector:
+        matchLabels:
+          #rótulo, app não tem nada de especial, pode ser qq coisa
+          #Deployment vai selecionar todo Pod que tiver esse rótulo
+          app: lembretes
+    #modelo que vai ser usado para construção dos Pods
+    template:
+        metadata:
+            labels:
+                #os Pods terão esse rótulo, assim,
+                #serão selecionados por esse deployment
+                app: lembretes
+        spec:
+          containers:
+            - name: lembretes
+              image: asbonato/lembretes
+              resources:
+                  limits:
+                      memory: 256Mi
+                      cpu: 1
+---
+apiVersion: v1
+kind: Service
+metadata: 
+    name: lembretes-clusterip-service
+spec:
+    #ip interno ao cluster
+    type: ClusterIP
+    selector:
+        app: lembretes
+    ports:
+      - name: lembretes
+        protocol: TCP
+        port: 4000
+        targetPort: 4000 
