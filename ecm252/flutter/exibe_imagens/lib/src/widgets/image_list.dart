@@ -11,7 +11,7 @@ class ImageList extends StatelessWidget {
     return ListView.builder(
       itemCount: imagens.length,
       itemBuilder: (BuildContext context, int index) {
-        return Text(imagens[index].toString());
+        return Image.network(imagens[index].url);
       },
     );
   }
