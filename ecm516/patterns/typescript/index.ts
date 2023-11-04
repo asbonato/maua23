@@ -8,11 +8,25 @@ a = "Hello";
 //n = "Hello"; //erro, pois n é number
 //s = 5; //erro, pois s é string
 
-var growOld = (age: number) =>  {
-    return ++age;
+var person = function (this: any, age:number) {
+    this.age = age;
+
+    this.growOld = function () {
+        this.age++;
+        console.log(this.age);
+    }
+
+    this.growOldL = () => {
+        this.age++;
+        console.log(this.age);
+    }
 }
 
-console.log(growOld(20));
+var p = new (person as any)(1);
+p.growOld();
+p.growOldL();
+
+
 
 function getAverage(a: number, b: number, c?:number){
     var total = a + b;
@@ -62,11 +76,30 @@ interface IStudent {
     id: number;
     name: string;
     onLeave?: boolean;
+
+    print():void;
+}
+
+class Estudante implements IStudent {
+    name: string;
+    id: number;
+
+    constructor(name: string, id: number){
+        this.name = name;
+        this.id = id;
+    }
+
+    print():void{
+        console.log(this.id +' '+ this.name);
+    }
 }
 
 function printStudent(s: IStudent){
-
+    s.print();
 }
+
+var estu = new Estudante('José', 123);
+printStudent(estu);
 
 interface searchFunction {
     (source: string, subString: string): boolean
@@ -104,3 +137,69 @@ var est_especial: SpecialStudent = new SpecialStudent("Maria", 18);
 est_especial.print();
 var est_especial2: Student = new SpecialStudent("José", 15);
 est_especial2.print();
+
+class Pessoa {
+    private cpf: string;
+    private nome: string;
+    private sobrenome: string;
+    readonly idade: number;
+
+    constructor(cpf: string, nome: string, sobrenome: string, 
+        idade: number) {
+            this.cpf = cpf;
+            this.nome = nome;
+            this.sobrenome = sobrenome;
+            this.idade = idade;
+    }
+    public getNomeCompleto(): string{
+        return `${this.nome} ${this.sobrenome}`
+    }
+    public getCpf(): string{
+        return this.cpf;
+    }
+    protected setCpf(cpf: string){
+        if(!cpf) {
+            throw new Error('CPF Inválido');
+        } else {
+            this.cpf = cpf;
+        }
+    }
+}
+
+var p1: Pessoa = new Pessoa('123.456.789-19', 'Camilo', 'Amoreira', 43);
+console.log(p1.getNomeCompleto());
+
+class Employee {
+    private static headcount: number = 0;
+
+    constructor(
+        private firstName: string,
+        private lastName: string,
+        private jobTitle: string
+    ) {
+        Employee.headcount++;
+    }
+
+    public static getHeadcount() {
+        return Employee.headcount;
+    }
+}
+
+let pedro = new Employee('Pedro', 'Silva', 'Desenvolvedor Front-End');
+let maria = new Employee('Maria', 'Souza', 'Desenvolvedor Back-End');
+
+console.log(Employee.getHeadcount());
+
+abstract class A{
+    foo(): number {return this.bar()};
+    abstract bar(): number;
+}
+
+class B extends A {
+    bar(): number {
+        return 1;
+    }
+}
+
+var b = new B();
+console.log(b.foo());
