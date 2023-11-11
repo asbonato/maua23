@@ -73,9 +73,14 @@ class LoginTela extends StatelessWidget {
   }
 
   Widget submitButton(Bloc bloc) {
-    return ElevatedButton(
-      onPressed: (){}, 
-      child: Text("Login")
+    return StreamBuilder(
+      stream: bloc.emailPasswordAreOk,
+      builder: (context, AsyncSnapshot <bool> snapshot) {
+        return ElevatedButton(
+          onPressed: snapshot.hasData? () => bloc.submitForm(context) : null, 
+          child: Text("Login")
       );
+      },
+    );
   }
 }
